@@ -27,7 +27,7 @@ client.on("message", message => {
    message.react("😜")
   const embed = new Discord.RichEmbed()
       .setColor("RANDOM")
-      .addField(" 『zx Bot』 『اسم البوت』", true)
+      .addField(" 『Zx Bot』 『اسم البوت』", true)
       
       .addField("『@مصمم البوت』SPARK| |👑#9837』", true)
       
@@ -304,7 +304,7 @@ client.on("message", message => {
 
 🎎『انواع الترحيب』🎎
 
-🎎 ترحيب 1 / ترحيب 2 
+🎎 منور / ترحيب 2 
 
 🎎 ترحيب 3 / ترحيب 4
 
@@ -781,27 +781,26 @@ client.on('ready', () => {
 
 client.on("message", message => {
     var prefix = "^^";
+ 
             var args = message.content.substring(prefix.length).split(" ");
             if (message.content.startsWith(prefix + "clear")) {
- if (!args[1]) {
-                                let x5bz1 = new Discord.RichEmbed()
-                                .setDescription("-clear <number>")
-                                .setColor("#0000FF")
-                                message.channel.sendEmbed(x5bz1);
-                            } else {
-                            let messagecount = parseInt(args[1]);
-                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                                                          message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                            message.channel.fetchMessages({limit: messagecount}).then(messages => message.channel.bulkDelete(messages));
-                            let x5bz2 = new Discord.RichEmbed()
-                                                            .setColor("#008000")
-                                .setDescription(":white_check_mark: | Delete " + args[1] + " Message!")
-                                                                                        message.delete("..");
-                                message.channel.sendEmbed(x5bz2);
-                            }
+   if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('⚠ | **لا يوجد لديك صلاحية لمسح الشات**');
+        var msg;
+        msg = parseInt();
+      
+      message.channel.fetchMessages({limit: msg}).then(messages => message.channel.bulkDelete(messages)).catch(console.error);
+      message.channel.sendMessage("", {embed: {
+        title: "Done | تــم مسح الشات",
+        color: 0x06DF00,
+        description: "تم مسح الرسائل ",
+        footer: {
+          text: "! Rasta#9764"
+        }
+      }}).then(msg => {msg.delete(3000)});
                           }
-});
 
+     
+});
 
  client.on('guildMemberAdd', member => {
   const channel = member.guild.channels.find('name', 'welcome');
@@ -913,7 +912,7 @@ client.on('message', message=>{
   
   
 client.on('message', message => {
- if (message.content.startsWith("ترحيب 1")) {
+ if (message.content.startsWith("منور")) {
                                  var mentionned = message.mentions.users.first();
              var mentionavatar;
                if(mentionned){
@@ -1180,6 +1179,32 @@ client.on('message', message => {
    message.channel.sendEmbed(EsTeKnAN);
   }
 });
+
+
+client.on('ready', () => {
+   console.log(`~~~~~~~~~~~~~~~~~`);
+   console.log(`Logging into Discord`);
+   console.log(`~~~~~~~~~~~~~~~~~~~~~`);
+   console.log(`on  ${client.guilds.size} Servers `);
+   console.log(`~~~~~~~~~~~~~~~~~~~~~~~~`);
+   console.log(`Logged in as ${client.user.tag}!`);
+   client.user.setGame(`^^help`,"http://twitch.tv/y04zgamer")
+   client.user.setStatus("dnd")
+});
+
+
+client.on('message', message => {
+            if(!message.channel.guild) return;
+let args = message.content.split(' ').slice(1).join(' ');
+if (message.content.startsWith('-bc-users')){
+ if(!message.author.id === '270978812962013185') return;
+message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
+client.users.forEach(m =>{
+m.sendMessage(args)
+})
+}
+});
+
 
 
 // THIS  MUST  BE  THIS  WAY
